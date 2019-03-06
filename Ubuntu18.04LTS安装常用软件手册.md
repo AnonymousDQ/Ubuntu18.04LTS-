@@ -1,4 +1,4 @@
-[TOC]
+
 
 # 一、安装Ubuntu18.04LTS
 
@@ -454,11 +454,11 @@ anaconda-navigator
 
 在激活tensorflow的虚拟环境运行，使用spyder会报错，没有tensorflow模块等。是因为tensorflow的虚拟环境中，没有spyder。要先在tensorflow的环境中安装spyder等插件。
 
-![](/home/victor/桌面/Ubuntu安装软件手册/images/tensorflow虚拟环境.png)
+![](/home/victor/文档/Ubuntu安装软件手册/images/tensorflow虚拟环境.png)
 
 要Ananconda navigator的Home中选择Applications on tensorflow,以及其他包。
 
-![](/home/victor/桌面/Ubuntu安装软件手册/images/查看tensorflow安装的包.png)
+![](/home/victor/文档/Ubuntu安装软件手册/images/查看tensorflow安装的包.png)
 
 #### 3、tensorboard的使用
 
@@ -716,10 +716,6 @@ sudo docker restart myrabbitmq
   Categories=Office
   
   cp /usr/share/applications/xmind8.desktop ~/桌面
-  
-  
-  
-  
   ```
 
   
