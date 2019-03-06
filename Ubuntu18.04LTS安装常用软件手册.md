@@ -1,3 +1,5 @@
+[TOC]
+
 # 一、安装Ubuntu18.04LTS
 
 - 去老毛桃[官网下载](http://www.laomaotao.org/download.html?download=http://down.lmtxz1.cn/20190125/LaoMaoTao_STA_gw.exe)软件，制作老毛桃U盘。我的笔记本比较旧，要设置BIOS setup的boot选项为**Legacy Support**才能进入WIN PE。
@@ -503,9 +505,221 @@ sudo vue init webpack vue-demo
 sudo cnpm install
 #然后运行项目
 sudo npm run dev
-
-
-
-
 ```
 
+#### 3、安装hexo
+
+hexo init命令执行的时候卡死在Install Dependencies
+
+可能还是由于使用默认的npm库，速度极慢。可以安装nrm
+
+nrm是一个npm源管理器。
+
+```shell
+#使用cnpm初始化nrm包
+cnpm install nrm -g
+#切换到淘宝npm镜像
+nrm use taobao
+#新建一个文件夹
+mkdir hexo
+#安装hexo的脚手架
+sudo npm install -g hexo-cli
+#初始化hexo
+hexo init
+#生成静态页面
+hexo g
+#本地运行测试。
+hexo s
+#将public文件内容部署到github仓库
+hexo d -g
+```
+
+
+
+# 十四、安装Eclipse
+
+[下载链接](http://mirrors.neusoft.edu.cn/eclipse/technology/epp/downloads/release/2018-12/R/eclipse-jee-2018-12-R-linux-gtk-x86_64.tar.gz)
+
+```shell
+#usr路径下新建eclipse文件夹
+cd /usr
+sudo mkdir eclipse
+#移动到/usr/eclipse路径
+cd ~/下载
+sudo mv eclipse-jee-2018-12-R-linux-gtk-x86_64.tar.gz /usr/eclipse/
+#解压
+sudo tar -zxvf eclipse-jee-2018-12-R-linux-gtk-x86_64.tar.gz
+#进入eclipse文件目录
+cd /usr/eclipse
+#给解压后的eclipse文件夹赋予权限
+sudo chown -R eclipse
+#建立桌面启动项
+cd /usr/share/applications
+sudo gedit eclipse.desktop
+#将下面内容复制到desktop文件里保存
+#Exec路径是eclipse安装文件夹下的可执行文件
+#Icon路径是图标路径
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse IDE
+Exec=/usr/eclipse/eclipse/eclipse
+Icon=/usr/eclipse/eclipse/icon.xpm
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Application;Development;
+#赋予可执行权限
+sudo chmod u+x eclipse.desktop
+#复制到桌面
+cp eclipse.desktop ~/桌面
+```
+
+# 十五、安装Tomcat
+
+[下载链接](https://tomcat.apache.org/download-80.cgi)
+
+```shell
+#/usr路径下新建tomcat文件夹
+cd /usr
+sudo mkdir tomcat
+#把下载的tomcat移动到新建文件夹
+cd ~/下载
+sudo mv apache-tomcat-8.5.37.tar.gz /usr/tomcat
+
+cd /usr/tomcat
+#解压
+sudo tar -zxvf apache-tomcat-8.5.37.tar.gz
+#赋予文件夹权限
+sudo chmod 755 -R apache-tomcat-8.5.37
+#到tomcat的bin路径下
+cd /usr/tomcat/apache-tomcat-8.5.37/bin
+#修改启动
+sudo vim startup.sh
+#加入jdk路径和tomcat路径
+#set java environment
+#JAVA PATH
+export JAVA_HOME=/usr/java/jdk1.8.0_201
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=.:${JAVA_HOME}/bin:$PATH
+#tomcat
+export TOMCAT_HOME=/usr/tomcat/apache-tomcat-8.5.37
+
+#测试启动tomcat
+./startup.sh
+```
+
+# 十六、安装Docker
+
+```shell
+#安装之前先更新
+sudo apt update
+sudo apt upgrade
+sudo apt install docker.io
+#启用docker
+sudo systemctl start docker
+sudo systemctl enable docker
+docker -v
+#查看已经pull的镜像
+sudo docker image
+```
+
+#### 1、docker下的RabbitMQ拉取
+
+```shell
+#使用国内镜像加速安装unbuntu18.04镜像
+sudo docker pull registry.docker-cn.com/library/ubuntu:18.04
+#安装RabbitMQ
+sudo docker pull registry.docker-cn.com/library/rabbitmq:3-management
+#运行RabbitMQ
+# -d:表示后台运行
+# -p：表示暴露端口号
+# --name myrabbitmq：指定名字
+# a829a97a0435：对应的image id
+sudo docker run -d -p 5672:5672 -p 15672:15672 --name myrabbitmq a829a97a0435
+#查看进程
+sudo docker ps
+#访问RabbitMQ
+localhost:15672
+0.0.0.0:15672
+#登录
+用户名：guest
+密码：guest
+```
+
+![安装RabbitMQ](/home/victor/文档/Ubuntu安装软件手册/images/docker安装RabbitMQ.png)
+
+![docker的RabbitMQ运行](/home/victor/文档/Ubuntu安装软件手册/images/docker运行RabbitMQ.png)
+
+#### 2、docker下的redis拉取
+
+```shell
+#下载Redis镜像
+sudo docker pull registry.docker-cn.com/library/redis
+#启动镜像
+#redis默认的端口是6379，可以将虚拟机的6379映射到容器的6379
+sudo docker run -d -p 6379:6379 --name myredis 0f55cf3661e9
+```
+
+![docker镜像命名冲突](/home/victor/文档/Ubuntu安装软件手册/images/docker名字冲突.png)
+
+解决方法：
+
+```shell
+#查看docker的进程
+sudo docker ps -a
+#删除掉创建的镜像
+#886183d7a2cc：container id，镜像id
+sudo docker rm 886183d7a2cc
+```
+
+![](/home/victor/文档/Ubuntu安装软件手册/images/查看docker的进程ps.png)
+
+```shell
+#重新启动docker已经有的容器
+sudo docker restart myrabbitmq
+```
+
+## 安装XMind8
+
+[官网链接](https://www.xmind.net/xmind/download/)
+
+- 解压压缩包
+
+- 然后移动到/usr/xmind8
+
+  ```shell
+  cd /usr
+  sudo mkdir xmind8
+  cd ~/下载 
+  sudo mv xmind-8-update8-linux /usr/xmind8/
+  cd /usr/xmind8/xmind-8-update8-linux/
+  #执行setup.sh文件，安装相关依赖。
+  
+  sudo /setup.sh 
+  #百度下载一个xmind8的图片
+  sudo mv xmind8.png /usr/xmind8/xmind-8-update8-linux/XMind_amd64
+  
+  #创建桌面快捷方式
+  sudo vim /usr/share/applications/xmind8.desktop
+  
+  #编辑xmind8.desktop
+  [Desktop Entry]
+  Type=Application
+  Path=/usr/xmind8/xmind-8-update8-linux/XMind_amd64
+  Exec=/usr/xmind8/xmind-8-update8-linux/XMind_amd64/XMind
+  Name=XMind 8
+  Comment=Create mind maps
+  GenericName=Planning Tool
+  Icon=/usr/xmind8/xmind-8-update8-linux/XMind_amd64/xmind8.png
+  Categories=Office
+  
+  cp /usr/share/applications/xmind8.desktop ~/桌面
+  
+  
+  
+  
+  ```
+
+  
