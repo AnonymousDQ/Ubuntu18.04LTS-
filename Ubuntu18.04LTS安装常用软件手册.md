@@ -454,11 +454,11 @@ anaconda-navigator
 
 在激活tensorflow的虚拟环境运行，使用spyder会报错，没有tensorflow模块等。是因为tensorflow的虚拟环境中，没有spyder。要先在tensorflow的环境中安装spyder等插件。
 
-![](/home/victor/文档/Ubuntu安装软件手册/images/tensorflow虚拟环境.png)
+![](images/tensorflow虚拟环境.png)
 
 要Ananconda navigator的Home中选择Applications on tensorflow,以及其他包。
 
-![](/home/victor/文档/Ubuntu安装软件手册/images/查看tensorflow安装的包.png)
+![](images/查看tensorflow安装的包.png)
 
 #### 3、tensorboard的使用
 
@@ -648,9 +648,9 @@ localhost:15672
 密码：guest
 ```
 
-![安装RabbitMQ](/home/victor/文档/Ubuntu安装软件手册/images/docker安装RabbitMQ.png)
+![安装RabbitMQ](images/docker安装RabbitMQ.png)
 
-![docker的RabbitMQ运行](/home/victor/文档/Ubuntu安装软件手册/images/docker运行RabbitMQ.png)
+![docker的RabbitMQ运行](images/docker运行RabbitMQ.png)
 
 #### 2、docker下的redis拉取
 
@@ -662,7 +662,7 @@ sudo docker pull registry.docker-cn.com/library/redis
 sudo docker run -d -p 6379:6379 --name myredis 0f55cf3661e9
 ```
 
-![docker镜像命名冲突](/home/victor/文档/Ubuntu安装软件手册/images/docker名字冲突.png)
+![docker镜像命名冲突](images/docker名字冲突.png)
 
 解决方法：
 
@@ -674,14 +674,14 @@ sudo docker ps -a
 sudo docker rm 886183d7a2cc
 ```
 
-![](/home/victor/文档/Ubuntu安装软件手册/images/查看docker的进程ps.png)
+![](images/查看docker的进程ps.png)
 
 ```shell
 #重新启动docker已经有的容器
 sudo docker restart myrabbitmq
 ```
 
-## 安装XMind8
+## 十七、安装XMind8
 
 [官网链接](https://www.xmind.net/xmind/download/)
 
@@ -718,4 +718,14 @@ sudo docker restart myrabbitmq
   cp /usr/share/applications/xmind8.desktop ~/桌面
   ```
 
+  ## 十八、本地文件提交到github
+
+  ```shell
+  cd ~/文档/Ubuntu安装软件手册
+  git add .
+  git commit -m "本次更新的说明"
+  git push origin master
+  ```
+
   
+
