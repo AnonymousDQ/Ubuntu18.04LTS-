@@ -166,7 +166,7 @@ status;
 
 #### 2、在webapp目录下建立一个folder命名为叫static文件夹
 
-![](../../桌面/ssm项目构建/images/webapp下建立static文件夹.png)
+![](images/webapp下建立static文件夹.png)
 
 #### 3、把解压的bootstrap-3.3.7-dist复制到新建的static目录下
 
@@ -534,7 +534,7 @@ jdbc.password=root
 
   [生成逆向工程](http://www.mybatis.org/generator/running/runningWithJava.html)
 
-  ![](../../桌面/ssm项目构建/images/建立一个test类.png)
+  ![](images/建立一个test类.png)
 
 - 运行这个测试类main方法生成就行。
 
