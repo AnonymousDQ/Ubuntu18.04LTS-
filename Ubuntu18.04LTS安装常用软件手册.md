@@ -727,5 +727,25 @@ sudo docker restart myrabbitmq
   git push origin master
   ```
 
+  ## 十九、安装react脚手架
+  
+  ```shell
+  #更新系统
+  sudo apt update
+  sudo apt upgrade
+  #跟新npm
+  sudo npm cache clean -f
+  sudo npm install -g n
+  sudo n stable
+  #安装react的脚手架
+  sudo cnpm install -g create-react-app
+  #创建一个文件夹
+  cd ~/桌面
+  sudo mkdir react-app
+  cd ~/桌面/react-app
+  #用react脚手架创建react项目
+  sudo create-react-app react-app
+  ```
+  
   
 
