@@ -690,7 +690,6 @@ sudo docker restart myrabbitmq
 - 然后移动到/usr/xmind8
 
   ```shell
-  cd /usr
   sudo mkdir xmind8
   cd ~/下载 
   sudo mv xmind-8-update8-linux /usr/xmind8/
@@ -717,18 +716,18 @@ sudo docker restart myrabbitmq
   
   cp /usr/share/applications/xmind8.desktop ~/桌面
   ```
+  
+## 十八、本地文件提交到github
 
-  ## 十八、本地文件提交到github
-
-  ```shell
+```shell
   cd ~/文档/Ubuntu安装软件手册
   git add .
   git commit -m "本次更新的说明"
   git push origin master
-  ```
+```
 
-  ## 十九、安装react脚手架
-  
+## 十九、安装react脚手架
+
   ```shell
   #更新系统
   sudo apt update
@@ -746,6 +745,39 @@ sudo docker restart myrabbitmq
   #用react脚手架创建react项目
   sudo create-react-app react-app
   ```
-  
+
+  ### 二十、安装vmware
+
+  [下载链接](https://download3.vmware.com/software/player/file/VMware-Player-15.1.0-13591040.x86_64.bundle?HashKey=04ff370c88515453c2a79ba2d5df876d&params=%7B%22sourcefilesize%22%3A%22141.60+MB%22%2C%22dlgcode%22%3A%22PLAYER-1510%22%2C%22languagecode%22%3A%22en%22%2C%22source%22%3A%22DOWNLOADS%22%2C%22downloadtype%22%3A%22manual%22%2C%22eula%22%3A%22N%22%2C%22downloaduuid%22%3A%222a92b861-36ca-4e04-937b-43019645eea6%22%2C%22purchased%22%3A%22N%22%2C%22dlgtype%22%3A%22Product+Binaries%22%2C%22productversion%22%3A%2215.1.0%22%2C%22productfamily%22%3A%22VMware+Workstation+Player%22%7D&AuthKey=1562586294_29dc1a37c9e192f53e9e3c7ae8b4c39a)
+
+  ```shell
+  cd ~/下载
+  #赋予可执行权限
+  sudo chmod +x VMware-Player-15.1.0-13591040.x86_64.bundle
+  #安装
+  sudo ./VMware-Player-15.1.0-13591040.x86_64.bundle
+  #创建虚拟机的时候，如果遇到vmmode is defined表示没有这个模块
+  #还需要在bios设置，把secure boot设置为disabled
+  sudo vmware-modconfig --console --install-all
+  sudo apt-get install libcanberra-gtk-module
+  #当vmware报错为Cannot open /dev/vmmon: No such file or directory. Please make sure that the kernel module `vmmon' is loaded
+  #设置秘钥
+  openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
+  #然后在内核装
+  sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+  #安装MOK
+  sudo /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
+  mokutil --import MOK.der
+  #重启
+  reboot
+  ```
+
+#### 安装vmware tools
+
+![](images/vmware设置.png)  
+
   
 
+需要吧CD/DVD设置为Auto detect设置为自动检测，然后保存，才可以出现install vmware tools的菜单栏由灰色变为可用。
+
+安装过程中，可能需要你输入密码，这时候，你只需要输入你的ubuntu的系统管理就行。然后安装就行。
