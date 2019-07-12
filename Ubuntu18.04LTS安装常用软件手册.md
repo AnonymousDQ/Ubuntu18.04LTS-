@@ -800,3 +800,5 @@ redis-cli
 #然后输入ping，出现PONG说明安装成功
 ```
 
+![](images/redis安装.png)
+
