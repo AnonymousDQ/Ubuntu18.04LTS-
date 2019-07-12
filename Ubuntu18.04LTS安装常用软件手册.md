@@ -622,7 +622,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 docker -v
 #查看已经pull的镜像
-sudo docker image
+sudo docker images
 ```
 
 #### 1、docker下的RabbitMQ拉取
@@ -781,3 +781,22 @@ sudo docker restart myrabbitmq
 需要吧CD/DVD设置为Auto detect设置为自动检测，然后保存，才可以出现install vmware tools的菜单栏由灰色变为可用。
 
 安装过程中，可能需要你输入密码，这时候，你只需要输入你的ubuntu的系统管理就行。然后安装就行。
+
+### Ubuntu 安装redis
+
+```shell
+#更新系统
+sudo apt update
+#更新软件列表
+sudo apt upgrade
+#安装redis
+sudo apt install redis-server
+#打印redis版本
+redi-server -v
+#启动redis服务
+redis-server
+#启动客户端
+redis-cli
+#然后输入ping，出现PONG说明安装成功
+```
+
