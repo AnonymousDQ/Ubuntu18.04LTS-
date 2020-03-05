@@ -782,6 +782,13 @@ sudo docker restart myrabbitmq
 
 安装过程中，可能需要你输入密码，这时候，你只需要输入你的ubuntu的系统管理就行。然后安装就行。
 
+```shell
+#卸载命令
+sudo  vmware-installer -u vmware-player
+```
+
+
+
 ### Ubuntu 安装redis
 
 ```shell
